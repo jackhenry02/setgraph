@@ -13399,42 +13399,34 @@
 
 </body>
 <script>
-    const observer = new MutationObserver(() => {
-        // Replace title text (if it exists)
-        const title = document.querySelector("title");
-        if (title) title.innerText = "Jack Henry — Engineering & Software Resume";
-    
-        // Replace main heading (often h1 or div-based in Framer)
-        const heading = document.querySelector("h1, .framer-text, .framer-styled-text");
-        if (heading) heading.innerText = "Jack Henry";
-    
-        // Replace subheading / intro
-        const subtitle = document.querySelector("p, .framer-paragraph");
-        if (subtitle) subtitle.innerText = "Aspiring data engineer, software developer, and tech enthusiast — aiming to have an impact.";
-    
-        // Replace links to GitHub
-        document.querySelectorAll("a").forEach(link => {
-            if (link.href.includes("setgraph.app")) {
-                link.href = "https://github.com/jackhenry02";
-                link.innerText = "Visit my GitHub";
-            }
-        });
-    
-        // Disconnect observer once changes are applied
-        if (heading && subtitle) observer.disconnect();
+    const observer = new MutationObserver((mutations) => {
+        const heading = document.querySelector('h1');
+        if (heading && heading.innerText !== "Jack Henry") {
+            heading.innerText = "Jack Henry";
+        }
+
+        const paragraph = document.querySelector('p');
+        if (paragraph && paragraph.innerText !== "Aspiring data engineer, software developer, and tech enthusiast — aiming to have an impact.") {
+            paragraph.innerText = "Aspiring data engineer, software developer, and tech enthusiast — aiming to have an impact.";
+        }
+
+        if (heading && heading.innerText === "Jack Henry" &&
+            paragraph && paragraph.innerText === "Aspiring data engineer, software developer, and tech enthusiast — aiming to have an impact.") {
+            observer.disconnect();
+        }
     });
-    
-    // Start observing the body for changes
+
     observer.observe(document.body, {
         childList: true,
         subtree: true
     });
+
     
     // Add a console Easter Egg
     console.log("%c👋 Hello Setgraph Team!", "font-size: 20px; color: #00FFAA; font-weight: bold;");
     console.log("Thanks for peeking at the console. This site was smartly re-purposed as my resume.");
     console.log("I'm Jack Henry — Cambridge engineer, data enthusiast, and software developer.");
     console.log("View more of my work here: https://github.com/jackhenry02");
-    </script>
+</script>
     
 </html>
