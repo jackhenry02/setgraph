@@ -13415,12 +13415,13 @@
             paragraph.innerText = "Check out my GITHUB!";
         }
 
-        const link = document.querySelector('a');
-        if (link.href.includes("setgraph.app")) {
-            link.href = "https://github.com/jackhenry02";
-            link.innerText = "Visit my GitHub";
-        }
-        
+        // Replace links to GitHub
+        document.querySelectorAll("a").forEach(link => {
+            if (link.href.includes("setgraph.app")) {
+                link.href = "https://github.com/jackhenry02";
+                link.innerText = "Visit my GitHub";
+            }
+        });
 
         /* To disconnect to save CPU, but will break the website
             if (heading && heading.innerText === "Jack Henry" &&
