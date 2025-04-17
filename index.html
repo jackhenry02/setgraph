@@ -13396,12 +13396,27 @@
     <!-- Start of bodyEnd -->
 
     <!-- End of bodyEnd -->
+    <script>
+        const observer = new MutationObserver((mutations) => {
+            const heading = document.querySelector('h1');
+            if (heading && heading.innerText !== "Your Name") {
+                heading.innerText = "Your Name";
+            }
+
+            const paragraph = document.querySelector('p');
+            if (paragraph && paragraph.innerText !== "Applying for [Position]") {
+                paragraph.innerText = "Applying for [Position]";
+            }
+
+            if (heading.innerText === "Your Name" && paragraph.innerText === "Applying for [Position]") {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    </script>
 </body>
-<script>
-    window.onload = function() {
-    document.querySelector('h1').innerText = "Your Name";
-    document.querySelector('p').innerText = "Your new role: Web Developer";
-    // and so on for all elements you want to replace.
-};
-</script>
 </html>
