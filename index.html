@@ -13400,6 +13400,11 @@
 </body>
 <script>
     const observer = new MutationObserver((mutations) => {
+        const title = document.querySelector('title');
+        if (title && title.innerText !== "Jack Henry Resume") {
+            title.innerText = "Jack Henry Resume";
+        }
+
         const heading = document.querySelector('h1');
         if (heading && heading.innerText !== "Jack Henry") {
             heading.innerText = "Jack Henry";
